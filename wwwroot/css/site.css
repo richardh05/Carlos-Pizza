@@ -17,6 +17,60 @@ html {
   min-height: 100%;
 }
 
+a {
+  /*color: #455d7a*/
+  color: #f95959
+}
+
+a:hover {
+  color: #1b6ec2;
+}
+
+.nav-item, .nav-link {
+  background-color: #f95959;
+  /*background-color: #258cfb;*/
+  border-radius: 10px;
+  margin-right: 4px;
+}
+
+.navbar-brand {
+  /*display: inline-block;*/
+
+}
+
+.navbar-brand img {
+  height: auto;
+  width: auto;
+  max-height: 100px;
+  max-width: 100px;
+}
+
+header, .navbar {
+  /*background-color: #f95959*/
+  /*background-color: #455d7a*/
+  background-color: #233142;
+}
+
+
+
 body {
   margin-bottom: 60px;
+  background-color: #e3e3e3;
+}
+
+footer {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+main {
+  background-color: white;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 50px;
+  border-radius: 10px;
 }
