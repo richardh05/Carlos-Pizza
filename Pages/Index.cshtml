@@ -1,4 +1,5 @@
 ﻿@page
+@using Carlos_Pizza.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -6,5 +7,45 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Whether you're here for a classic or something new, we've got the perfect slice waiting for you. Please take a look.</p>
+</div>
+
+@* <div class="text-center"> *@
+@*     <h2>Menu Table</h2> *@
+@*     <table> *@
+@*         <thead> *@
+@*         <tr> *@
+@*             <th>Name</th> *@
+@*             <th>Description</th> *@
+@*             <th>Price</th> *@
+@*         </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*         @foreach (var m in Model.MenuItems) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@m.Name</td> *@
+@*                 <td>@m.Desc</td> *@
+@*                 <td>@m.Price</td> *@
+@*             </tr> *@
+@*         } *@
+@*         </tbody> *@
+@*     </table> *@
+@* </div> *@
+
+@* <h2>Please take a look</h2> *@
+<form method="post" class="flex-container justify-content-center">
+    <input asp-for="Search" class="searchbar" />
+    <button type="submit" asp-page-handler="Search">Search</button>
+</form>
+
+<div class="flex-container">
+    @foreach (var m in Model.MenuItems)
+    {
+        <div>
+            <h3>@Html.DisplayFor(modelItem => m.Name)</h3>
+            <p>@Html.DisplayFor(modelItem => m.Price)</p>
+            <p>@Html.DisplayFor(modelItem => m.Desc)</p>
+        </div>
+    }
 </div>

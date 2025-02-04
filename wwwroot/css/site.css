@@ -17,13 +17,26 @@ html {
   min-height: 100%;
 }
 
+
+:root {
+  --bs-body-font-family: "Montserrat", sans-serif;
+}
+
+* {
+  font-family: "Montserrat", serif sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
 a {
   /*color: #455d7a*/
   color: #f95959
 }
 
 a:hover {
-  color: #1b6ec2;
+  /*color: #1b6ec2;*/
+  color: #455d7a;
 }
 
 .nav-item, .nav-link {
@@ -73,4 +86,62 @@ main {
   margin-right: auto;
   padding: 10px 50px;
   border-radius: 10px;
+}
+
+/* === Food items on main menu === */
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  
+}
+.flex-container > div {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px;
+  background-color: #FAF9F6;
+}
+
+.flex-container > div:hover {
+  background-color: #f95959;
+  cursor: pointer;
+  /*color: #e3e3e3;*/
+}
+
+h2 {
+  text-align: center;
+  font-weight: 400;
+}
+h3 {
+  text-align: center;
+  font-weight: 400;
+}
+
+/*Search bar*/
+
+button {
+  background-color: #FAF9F6;
+  font-weight: 200;
+}
+
+button:hover {
+  background-color: #f95959;
+}
+
+button, .searchbar {
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-width: thin;
+}
+
+.searchbar{
+  width: 80%;
+  margin-right: 5px;
 }

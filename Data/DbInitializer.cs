@@ -5,7 +5,7 @@ namespace Carlos_Pizza.Data;
 public class DbInitializer
 {
     public static void Initialize(CarlosDB context) {
-        // Look for any food itmes.
+        // Look for any food items.
         if (context.MenuItems.Any())
         {
             return;   // DB has been seeded
@@ -13,11 +13,25 @@ public class DbInitializer
 
         var MenuItems = new MenuItem[]
         {
-            new MenuItem{Name="Shepherds Pie",Desc="Our tasty shepherds pie packed full of lean minced lamb and an assortment of vegetables",Available=true,Vegetarian=false},
-            new MenuItem{Name="Cottage Pie",Desc="Our tasty cottage pie packed full of lean minced beef and an assortment of vegetables",Available=true,Vegetarian=false},
-            new MenuItem{Name="Haggis,Neeps and Tatties",Desc="Scotland national Haggis dish. Sheep’s heart, liver, and lungs are minced, mixed with suet and oatmeal, then seasoned with onion, cayenne, and our secret spice. Served with boiled turnips and potatoes (‘neeps and tatties’)",Available=true,Vegetarian=false},
-            new MenuItem{Name="Bangers and Mash",Desc="Succulent sausages nestled on a bed of buttery mashed potatoes and drenched in a rich onion gravy",Available=true,Vegetarian=false},
-            new MenuItem{Name="Toad in the Hole",Desc="Ultimate toad-in-the-hole with caramelised onion gravy",Available=true,Vegetarian=false}
+            // == Mains ==
+            new MenuItem{Name="Margherita Pizza",Desc="A classic pizza topped with fresh mozzarella, tomato sauce, basil, and a drizzle of olive oil.",Available=true,Vegetarian=true},
+            new MenuItem{Name="Pepperoni Pizza",Desc="Loaded with savory pepperoni slices, mozzarella cheese, and marinara sauce.",Available=true,Vegetarian=false},
+            new MenuItem{Name="Veggie Pizza",Desc="A delightful mix of fresh vegetables including bell peppers, onions, mushrooms, olives, and tomatoes on a mozzarella base.",Available=true,Vegetarian=true},
+            new MenuItem{Name="BBQ Chicken Pizza",Desc="Grilled chicken, red onions, barbecue sauce, and mozzarella cheese, perfect for BBQ lovers.",Available=true,Vegetarian=false},
+            new MenuItem{Name="Meat Lover's Pizza",Desc="A hearty pizza with pepperoni, sausage, bacon, and ham, all topped with melted mozzarella cheese.",Available=true,Vegetarian=false},
+            new MenuItem{Name="Hawaiian Pizza",Desc="A sweet and savory combination of ham, pineapple, and mozzarella cheese.",Available=true,Vegetarian=false},
+            new MenuItem{Name="Four Cheese Pizza",Desc="A rich pizza topped with a blend of mozzarella, cheddar, parmesan, and goat cheese.",Available=true,Vegetarian=true},
+            
+            // == Sides ==
+            new MenuItem{Name="Garlic Bread",Desc="Warm, buttery garlic bread topped with a sprinkle of parmesan and parsley.",Available=true,Vegetarian=true},
+            new MenuItem{Name="Caesar Salad",Desc="Crisp romaine lettuce tossed with Caesar dressing, parmesan cheese, and croutons.",Available=true,Vegetarian=true},
+            
+            // == Drinks ==
+            new MenuItem{Name="Coke",Desc="b",Available=true,Vegetarian=true},
+            new MenuItem{Name="Diet Coke",Desc="b",Available=true,Vegetarian=true},
+            new MenuItem{Name="Sprite",Desc="b",Available=true,Vegetarian=true},
+            new MenuItem{Name="Fanta",Desc="b",Available=true,Vegetarian=true},
+
         };
 
         context.MenuItems.AddRange(MenuItems);
