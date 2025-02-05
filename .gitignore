@@ -5,6 +5,7 @@
 # Do not ignore .bib and .tex files in the report directory
 !Report/*.bib
 !Report/*.tex
+!Report/*.drawio.svg
 
 
 ## Ignore Visual Studio temporary files, build results, and
