@@ -17,7 +17,7 @@ public class MenuItem
     public bool? Vegetarian { get; set; }
     [DataType(DataType.Currency)]
     [Column(TypeName = "Money")]
-    public Nullable<decimal> Price { get; set; }
+    public double Price { get; set; }
     [StringLength(200)]
     public string Image { get; set; }
 }

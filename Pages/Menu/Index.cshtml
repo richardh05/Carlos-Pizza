@@ -5,56 +5,71 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="text-center">
+    <h1 class="display-4">Menu</h1>
+    <p>Please select an item, then add it to your cart.</p>
+    <p><a asp-page="Create">Add new item</a></p>
+</div>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].Desc)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].Available)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].Vegetarian)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MenuItem[0].Price)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.MenuItem) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Desc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vegetarian)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="flex-container">
+    @foreach (var m in Model.MenuItem)
+    {
+        <div>
+            <a asp-page="./Details" asp-route-id="@m.Id">
+                <h3>@Html.DisplayFor(modelItem => m.Name)</h3>
+                <p>@Html.DisplayFor(modelItem => m.Price)</p>
+                <p>@Html.DisplayFor(modelItem => m.Desc)</p>
+            </a>
+        </div>
+    }
+</div>
+
+
+@* <table class="table"> *@
+@*     <thead> *@
+@*         <tr> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.MenuItem[0].Name) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.MenuItem[0].Desc) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.MenuItem[0].Available) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.MenuItem[0].Vegetarian) *@
+@*             </th> *@
+@*             <th> *@
+@*                 @Html.DisplayNameFor(model => model.MenuItem[0].Price) *@
+@*             </th> *@
+@*             <th></th> *@
+@*         </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@* @foreach (var item in Model.MenuItem) { *@
+@*         <tr> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Name) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Desc) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Available) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Vegetarian) *@
+@*             </td> *@
+@*             <td> *@
+@*                 @Html.DisplayFor(modelItem => item.Price) *@
+@*             </td> *@
+@*             <td> *@
+@*                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> | *@
+@*                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> | *@
+@*                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> *@
+@*             </td> *@
+@*         </tr> *@
+@* } *@
+@*     </tbody> *@
+@* </table> *@
