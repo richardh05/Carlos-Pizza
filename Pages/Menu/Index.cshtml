@@ -11,6 +11,11 @@
     <p><a asp-page="Create">Add new item</a></p>
 </div>
 
+<form method="post" class="flex-container justify-content-center">
+    <input asp-for="SearchString" class="searchbar" />
+    <button type="submit" asp-page-handler="Search">Search</button>
+</form>
+
 <div class="flex-container">
     @foreach (var m in Model.MenuItem)
     {

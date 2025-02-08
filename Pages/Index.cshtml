@@ -34,10 +34,6 @@
 @* </div> *@
 
 @* <h2>Please take a look</h2> *@
-<form method="post" class="flex-container justify-content-center">
-    <input asp-for="Search" class="searchbar" />
-    <button type="submit" asp-page-handler="Search">Search</button>
-</form>
 
 <div class="flex-container">
     @foreach (var m in Model.MenuItems)

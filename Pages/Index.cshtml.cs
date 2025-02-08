@@ -17,7 +17,7 @@ namespace Carlos_Pizza.Pages
         }
         
         [BindProperty]
-        public string Search { get; set; }
+        public string SearchString { get; set; }
 
         public IList<MenuItem> MenuItems { get; set; } = default;
         
@@ -30,7 +30,7 @@ namespace Carlos_Pizza.Pages
         public IActionResult OnPostSearch()
         {
             MenuItems = _db.MenuItems
-                .FromSqlRaw("SELECT * FROM MenuItem WHERE Name LIKE '" + Search + "%'").ToList();
+                .FromSqlRaw("SELECT * FROM MenuItem WHERE Name LIKE '" + SearchString + "%'").ToList();
             return Page();
         }
     }
