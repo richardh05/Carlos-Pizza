@@ -13,6 +13,7 @@ namespace Carlos_Pizza.Data
 
             var MenuItems = new MenuItem[]
             {
+                // Id's don't need to be declared because ASP automates them
                 // == Mains ==
                 new MenuItem{Name="Margherita Pizza", Desc="A classic pizza topped with fresh mozzarella, tomato sauce, basil, and a drizzle of olive oil.", Price=9.90,
                     Available=true, Vegetarian=true, Category="Main"},

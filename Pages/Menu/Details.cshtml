@@ -12,10 +12,11 @@
     <hr />
     <ul>
         <li>Availability: @Html.DisplayFor(model => model.MenuItem.Available)</li>
-        <li>Suitablility for vegetarians: @Html.DisplayFor(model => model.MenuItem.Vegetarian)</li>
+        <li>Suitability for vegetarians: @Html.DisplayFor(model => model.MenuItem.Vegetarian)</li>
     </ul>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.MenuItem.Id">Edit</a> |
+    <a asp-page="./Delete" asp-route-id="@Model.MenuItem.Id">Delete</a> |
     <a asp-page="./Index">Back to Menu</a>
 </div>
