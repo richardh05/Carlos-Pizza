@@ -51,25 +51,6 @@ namespace Carlos_Pizza.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MenuItem",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Desc = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
-                    Category = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
-                    Available = table.Column<bool>(type: "bit", nullable: true),
-                    Vegetarian = table.Column<bool>(type: "bit", nullable: true),
-                    Price = table.Column<decimal>(type: "Money", nullable: false),
-                    Image = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MenuItem", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
