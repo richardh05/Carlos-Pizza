@@ -1,12 +1,15 @@
 using Carlos_Pizza.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CarlosDB>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CarlosDB") ?? throw new InvalidOperationException("Connection string 'CarlosDB' not found.")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CarlosDB>();
 
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

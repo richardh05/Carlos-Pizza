@@ -1,9 +1,10 @@
 using Carlos_Pizza.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Carlos_Pizza.Data;
 
-public class CarlosDB : DbContext
+public class CarlosDB : IdentityDbContext
 {
     public CarlosDB(DbContextOptions<CarlosDB> options)
         : base(options)
@@ -15,6 +16,7 @@ public class CarlosDB : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
     }
 }
