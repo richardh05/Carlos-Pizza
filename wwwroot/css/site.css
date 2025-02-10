@@ -112,6 +112,8 @@ main {
 .flex-container > div:hover {
   background-color: #f95959;
   cursor: pointer;
+  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.2s;
   /*color: #e3e3e3;*/
 }
 
