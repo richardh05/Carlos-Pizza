@@ -40,17 +40,26 @@ a:hover {
   color: #455d7a;
 }
 
-.nav-item, .nav-link {
-  background-color: #f95959;
-  /*background-color: #258cfb;*/
+header .nav-item, header .nav-link {
+  background-color: #233142;
+  /*background-color: #455d7a;*/
+  color: #e3e3e3;
   border-radius: 10px;
-  margin-right: 4px;
+  margin-right: 2px;
+  margin-left: 2px;
+  font-weight: 400;
 }
 
-.navbar-brand {
-  /*display: inline-block;*/
-
+/*any button-like object that is hovered on*/
+button:hover, header .nav-link:hover, .flex-container > div:hover, .nav-pills .nav-link:hover {
+  background-color: #f95959;
+  color: black;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  -webkit-transition-duration: 0.4s;
+  font-weight: 500;
 }
+
 
 .navbar-brand img {
   height: auto;
@@ -82,7 +91,7 @@ footer {
 
 main {
   background-color: white;
-  max-width: 650px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 50px;
@@ -97,9 +106,9 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  
 }
-.flex-container > div {
+
+.flex-container > div { /* item within flex-container */
   text-align: center;
   height: 100%;
   width: 100%;
@@ -107,14 +116,7 @@ main {
   border-radius: 10px;
   margin: 10px;
   background-color: #FAF9F6;
-}
-
-.flex-container > div:hover {
-  background-color: #f95959;
-  cursor: pointer;
-  transition-duration: 0.2s;
-  -webkit-transition-duration: 0.2s;
-  /*color: #e3e3e3;*/
+  max-width: 300px;
 }
 
 .flex-container a {
@@ -138,10 +140,6 @@ button {
   font-weight: 200;
 }
 
-button:hover {
-  background-color: #f95959;
-}
-
 button, .searchbar {
   border-radius: 10px;
   padding-left: 10px;
@@ -153,4 +151,34 @@ button, .searchbar {
   width: 80%;
   margin-right: 5px;
   text-align: left;
+}
+
+/* Account Management */
+.nav-pills .navitem {
+  background-color: #FAF9F6;
+}
+.nav-pills .nav-link {
+  color: black;
+  background-color: #FAF9F6;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #455d7a;
+}
+
+.nav-pills .nav-link.active:hover {
+color: white; /*stops the text going black without the background going red*/
+}
+
+/*Affects the right side content of the account management pages.*/
+.row {
+  justify-content: center;
+  margin: auto;
+}
+
+.btn-primary {
+  background-color: #455d7a;
+}
+.btn-danger {
+  background-color: #f95959;
 }
