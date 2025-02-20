@@ -8,14 +8,16 @@
 <div class="text-center">
     <h1 class="display-4">Menu</h1>
     <p>Please select an item, then add it to your cart.</p>
-    <p><a asp-page="Create">Add new item</a></p>
 </div>
 
+<div class="flex-container">
 <form method="post" class="flex-container justify-content-center">
     <input asp-for="SearchString" class="searchbar" />
     <button type="submit" asp-page-handler="Search">Search</button>
 </form>
-
+<a asp-page="Create"><button>Add</button></a>
+</div>
+<hr/>
 <div class="flex-container">
     @foreach (var m in Model.MenuItem)
     {

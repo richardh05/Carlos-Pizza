@@ -27,8 +27,8 @@ namespace Carlos_Pizza.Data
 
                 // == Sides ==
                 new MenuItem{Name="Garlic Bread", Desc="Warm, buttery garlic bread topped with a sprinkle of parmesan and parsley.", Price=9.90, Available=true, Vegetarian=true, Category="Sides"},
-                new MenuItem{Name="Caesar Salad", Desc="Crisp romaine lettuce tossed with Caesar dressing, parmesan cheese, and croutons.", Price=3.00, Available=true, Vegetarian=true, Category="Sides"},
-                new MenuItem{Name="Mozzarella Sticks", Desc="Breaded and fried to golden perfection, served with marinara dipping sauce.", Price=4.70, Available=true, Vegetarian=true, Category="Sides"},
+                new MenuItem{Name="Loaded Salad", Desc="Delight mozzarella perfectly melted over peppers, tomato and sweetcorn.", Price=3.00, Available=true, Vegetarian=true, Category="Sides"},
+                new MenuItem{Name="Chicken Strips", Desc="Breaded and fried to golden perfection, served with marinara dipping sauce.", Price=4.70, Available=true, Vegetarian=true, Category="Sides"},
                 new MenuItem{Name="French Fries", Desc="Classic french fries. Hot, fresh, and crispy, served with ketchup.", Price=3.00, Available=true, Vegetarian=true, Category="Sides"},
 
                 // == Drinks ==

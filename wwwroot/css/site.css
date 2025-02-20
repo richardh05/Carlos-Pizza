@@ -1,3 +1,4 @@
+/* === boilerplate === */
 html {
   font-size: 14px;
 }
@@ -30,15 +31,21 @@ html {
   font-style: normal;
 }
 
-a {
-  /*color: #455d7a*/
+a:hover {
   color: #f95959
 }
 
-a:hover {
+a {
   /*color: #1b6ec2;*/
   color: #455d7a;
 }
+
+/*header {*/
+/*  position: fixed;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*}*/
 
 header .nav-item, header .nav-link {
   background-color: #233142;
@@ -50,16 +57,40 @@ header .nav-item, header .nav-link {
   font-weight: 400;
 }
 
-/*any button-like object that is hovered on*/
-button:hover, header .nav-link:hover, .flex-container > div:hover, .nav-pills .nav-link:hover {
+/*change colour of any button-like object that is hovered on*/
+button:hover, 
+.nav-pills .nav-link:hover, 
+.flex-container > div:hover {
+  transition: all 0.4s ease;
+  -webkit-transition-duration: 0.4s;
   background-color: #f95959;
   color: black;
   cursor: pointer;
-  transition: all 0.4s ease;
-  -webkit-transition-duration: 0.4s;
-  font-weight: 500;
+  transform: scale(1.05);
+  border-radius: 10px;
 }
 
+header .nav-link:hover {
+  transition: all 0.4s ease;
+  -webkit-transition-duration: 0.4s;
+  background-color: #455d7a;
+  color: white;
+  cursor: pointer;
+  transform: scale(1.05);
+  border-radius: 10px;
+}
+
+
+  /*change font weight of any button-like object that is hovered on*/
+button:hover,
+header .nav-link:hover,
+.nav-pills .nav-link:hover,
+.flex-container > div:hover p,
+.flex-container > div:hover h3 {
+  transition: all 0.4s ease;
+  -webkit-transition-duration: 0.4s;
+  /*font-weight: 450;*/
+}
 
 .navbar-brand img {
   height: auto;
@@ -72,21 +103,43 @@ header, .navbar {
   /*background-color: #f95959*/
   /*background-color: #455d7a*/
   background-color: #233142;
+  min-height: 50px;
 }
 
-
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 1000;
+}
 
 body {
-  margin-bottom: 60px;
+  /*margin: 0px 0px 150px;*/
+  margin-bottom: auto;
+  min-height: 100vh;
   background-color: #e3e3e3;
+  background-image: url('background.jpg');
+  padding-bottom: 60px;
 }
 
 footer {
-  margin-left: auto;
-  margin-right: auto;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  /*padding-top: 10px;*/
+  /*padding-bottom: 10px;*/
+  background-color: #e3e3e3;
+  margin: auto;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
 }
 
 main {
@@ -94,8 +147,9 @@ main {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px 50px;
+  padding: 10px 50px 50px;
   border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);  /* x-offset, y-offset, blur-radius, color */
 }
 
 /* === Food items on main menu === */
@@ -109,6 +163,7 @@ main {
 }
 
 .flex-container > div { /* item within flex-container */
+  font-weight: lighter;
   text-align: center;
   height: 100%;
   width: 100%;
@@ -117,6 +172,7 @@ main {
   margin: 10px;
   background-color: #FAF9F6;
   max-width: 300px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);  /* x-offset, y-offset, blur-radius, color */
 }
 
 .flex-container a {
@@ -124,11 +180,7 @@ main {
   color: inherit;
 }
 
-h2 {
-  text-align: center;
-  font-weight: 400;
-}
-h3 {
+.flex-container h3 {
   text-align: center;
   font-weight: 400;
 }
@@ -140,16 +192,21 @@ button {
   font-weight: 200;
 }
 
-button, .searchbar {
+button, 
+.searchbar {
   border-radius: 10px;
   padding-left: 10px;
   padding-right: 10px;
   border-width: thin;
 }
 
+.flex-container button {
+  margin-left: 5px;
+}
+
 .searchbar{
-  width: 80%;
-  margin-right: 5px;
+  width: 500px;
+  /*margin-right: 5px;*/
   text-align: left;
 }
 
