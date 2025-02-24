@@ -114,6 +114,11 @@ header {
   z-index: 1000;
 }
 
+/*fixes weird colouring on "Access Denied" page*/
+main header { 
+  background-color: inherit;
+}
+
 body {
   /*margin: 0px 0px 150px;*/
   margin-bottom: auto;

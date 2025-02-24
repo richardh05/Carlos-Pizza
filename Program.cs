@@ -9,8 +9,16 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CarlosDB>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CarlosDB") ?? throw new InvalidOperationException("Connection string 'CarlosDB' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CarlosDB>();
+// commenting out default identity to replace it with one that adds Identity AND IdentityRole
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CarlosDB>();
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(
+    options => options.Stores.MaxLengthForKeys = 128
+    )
+        .AddEntityFrameworkStores<CarlosDB>()
+        .AddRoles<IdentityRole>()
+        .AddDefaultUI()
+        .AddDefaultTokenProviders();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
     
@@ -46,4 +54,15 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<CarlosDB>();
+    context.Database.Migrate();
+    var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+    IdentitySeedData.Initialize(context, userMgr, roleMgr).Wait();
+}
+
+// VVV Always keep at the bottom, makes the app run
 app.Run();
