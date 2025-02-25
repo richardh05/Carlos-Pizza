@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Carlos_Pizza.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Carlos_Pizza.Pages.Menu
 {
+    [Authorize (Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly CarlosDB _context;

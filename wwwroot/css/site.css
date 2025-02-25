@@ -244,3 +244,16 @@ color: white; /*stops the text going black without the background going red*/
 .btn-danger {
   background-color: #f95959;
 }
+
+#map script,
+#map noscript{
+  width: 600px;
+  height: 400px;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+}
+
+form input {
+  
+}

@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Carlos_Pizza.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Carlos_Pizza.Pages.Menu
 {
+    [Authorize (Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly CarlosDB _context;
