@@ -2,7 +2,7 @@
 @model Carlos_Pizza.Pages.Menu.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Menu";
 }
 
 <div class="text-center">
@@ -19,13 +19,18 @@
 </div>
 <hr/>
 <div class="flex-container">
-    @foreach (var m in Model.MenuItem)
+    @foreach (var m in Model.MenuItem.Where(item => item.Available == true))
     {
         <div>
             <a asp-page="./Details" asp-route-id="@m.Id">
+                @if (m.Image != null && m.Image.Length > 0)
+                {
+                    string base64String = Convert.ToBase64String(m.Image);
+                    string imageSrc = $"data:image/webp;base64,{base64String}";
+                    <img src="@imageSrc" alt="@Html.DisplayFor(modelItem => m.Name) image" />
+                }
                 <h3>@Html.DisplayFor(modelItem => m.Name)</h3>
                 <p>@Html.DisplayFor(modelItem => m.Price)</p>
-                <p>@Html.DisplayFor(modelItem => m.Desc)</p>
             </a>
         </div>
     }

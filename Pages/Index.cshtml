@@ -37,7 +37,7 @@
 <hr />
 
 <div class="flex-container">
-    @foreach (var m in Model.MenuItems)
+    @foreach (var m in Model.MenuItems.Where(item => item.Available == true))
     {
         <div>
             <a asp-page="Menu/Details" asp-route-id="@m.Id">
