@@ -4,19 +4,57 @@
 @{
     ViewData["Title"] = @Html.DisplayFor(modelItem => modelItem.MenuItem.Name);
 }
+<h2>Add to cart?</h2>
+<div class="flex-container">
+    <div>
+        @if (Model.MenuItem.Image != null && Model.MenuItem.Image.Length > 0)
+        {
+            string base64String = Convert.ToBase64String(Model.MenuItem.Image);
+            string imageSrc = $"data:image/webp;base64,{base64String}";
+            <img src="@imageSrc" alt="@Html.DisplayFor(modelItem => modelItem.MenuItem.Name) image" />
+        }
+        <h3>@Html.DisplayFor(modelItem => modelItem.MenuItem.Name)</h3>
+        <p>@Html.DisplayFor(modelItem => modelItem.MenuItem.Price)</p>
+    </div>
+</div>
+
+<hr/>
 
 <div>
-    <h3>@Html.DisplayFor(modelItem => modelItem.MenuItem.Name)</h3>
-    <p>@Html.DisplayFor(modelItem => modelItem.MenuItem.Price)</p>
-    <p>@Html.DisplayFor(modelItem => modelItem.MenuItem.Desc)</p>
-    <hr />
     <ul>
-        <li>Availability: @Html.DisplayFor(model => model.MenuItem.Available)</li>
-        <li>Suitability for vegetarians: @Html.DisplayFor(model => model.MenuItem.Vegetarian)</li>
+        <li>@Html.DisplayFor(modelItem => modelItem.MenuItem.Desc)</li>
+        @switch (Model.MenuItem.Category)
+        {
+            case "Main":
+                <li>This item is a main dish, so make sure to treat yourself to a side.</li>
+                break;
+            case "Sides":
+                <li>This is a side, so don't forget to add your favourite mains to the basket too.</li>
+                break;
+            case "Drinks":
+                <li>This drink is best served with a pizza.</li>
+                break;
+            default:
+                <li>This item belongs to the "@Html.DisplayFor(modelItem => modelItem.MenuItem.Category)" category.</li>
+                break;
+        }
+        @switch (Model.MenuItem.Vegetarian)
+        {
+            case true:
+                <li>This item is suitable for vegetarians.</li>
+                break;
+            case false:
+                <li>This item is not suitable for vegetarians.</li>
+                break;
+            default:
+                <li>We haven't specified whether this is suitable for vegetarians, likely by accident. Please contact us for further guidance.</li>
+                break;
+        }
     </ul>
 </div>
+
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.MenuItem.Id">Edit</a> |
-    <a asp-page="./Delete" asp-route-id="@Model.MenuItem.Id">Delete</a> |
-    <a asp-page="./Index">Back to Menu</a>
+    <a href="javascript:history.go(-1)"><button class="btn-primary">Go Back</button></a>
+    <a asp-page="./Edit" asp-route-id="@Model.MenuItem.Id"><button class="btn-primary">Edit</button></a>
+    <a asp-page="./Delete" asp-route-id="@Model.MenuItem.Id"><button class="btn-danger">Delete</button></a>
 </div>

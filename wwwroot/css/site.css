@@ -268,3 +268,7 @@ color: white; /*stops the text going black without the background going red*/
 form input {
   
 }
+
+li {
+  text-align: left;
+}
