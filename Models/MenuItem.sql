@@ -1,13 +1,15 @@
 -- DbInitializer stopped working for me, so I'm using this for now
+DROP TABLE IF EXISTS MenuItem;
+
 CREATE TABLE MenuItem (
-                           Id INT IDENTITY(1,1) PRIMARY KEY,
-                           Name NVARCHAR(40) NOT NULL,
-                           [Desc] NVARCHAR(255),             
-                           Category NVARCHAR(40),
-                           Available BIT,                    
-                           Vegetarian BIT,               
-                           Price MONEY NOT NULL,
-                           Image NVARCHAR(200)
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(40) NOT NULL,
+    [Desc] NVARCHAR(255),             
+    Category NVARCHAR(40),
+    Available BIT,                    
+    Vegetarian BIT,               
+    Price MONEY NOT NULL,
+    Image VARBINARY(MAX),
 );
 
 
@@ -33,4 +35,3 @@ VALUES
     ('Diet Coke', 'Drinks', 'A refreshing can of Diet Coke', 1.20, 1, 1),
     ('Sprite', 'Drinks', 'A refreshing can of Sprite', 1.20, 1, 1),
     ('Fanta', 'Drinks', 'A refreshing can of Fanta', 1.20, 1, 1);
-
