@@ -5,50 +5,56 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h2>Creating new item</h2>
 
-<h4>MenuItem</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="MenuItem.Name" class="control-label"></label>
-                <input asp-for="MenuItem.Name" class="form-control" />
-                <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MenuItem.Desc" class="control-label"></label>
-                <input asp-for="MenuItem.Desc" class="form-control" />
-                <span asp-validation-for="MenuItem.Desc" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MenuItem.Available" class="control-label"></label>
-                <input asp-for="MenuItem.Available" class="form-control" />
+<hr/>
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-narrow">
+            <label asp-for="MenuItem.Name" class="control-label"></label>
+            <input asp-for="MenuItem.Name" class="form-control"/>
+            <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
+        </div>
+        <div class="edit-flex-item-narrow">
+            <label asp-for="MenuItem.Category" class="control-label"></label>
+            <input asp-for="MenuItem.Category" class="form-control"/>
+            <span asp-validation-for="MenuItem.Category" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-wide">
+            <label asp-for="MenuItem.Desc" class="control-label">Description</label>
+            <textarea asp-for="MenuItem.Desc" rows="4" class="form-control"></textarea>
+            <span asp-validation-for="MenuItem.Desc" class="text-danger"></span>
+            @* <textarea id="message" name="message" rows="4" required minlength="10"></textarea> *@
+        </div>
+    </div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-narrow">
+            <div>
+                <label asp-for="MenuItem.Available" class="control-label">Is this item currently available?</label>
+                <input asp-for="MenuItem.Available" type="checkbox"/>
                 <span asp-validation-for="MenuItem.Available" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MenuItem.Vegetarian" class="control-label"></label>
-                <input asp-for="MenuItem.Vegetarian" class="form-control" />
+            <div>
+                <label asp-for="MenuItem.Vegetarian" class="control-label">Is this item vegetarian?</label>
+                <input asp-for="MenuItem.Vegetarian" type="checkbox"/>
                 <span asp-validation-for="MenuItem.Vegetarian" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MenuItem.Price" class="control-label"></label>
-                <input asp-for="MenuItem.Price" class="form-control" />
-                <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div class="edit-flex-item-narrow">
+            <label asp-for="MenuItem.Price" class="control-label"></label>
+            <input asp-for="MenuItem.Price" class="form-control"/>
+            <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+    <button type="submit" class="btn-danger">Save</button>
+</form>
+<a href="javascript:history.go(-1)">
+    <button class="btn-primary">Discard</button>
+</a>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

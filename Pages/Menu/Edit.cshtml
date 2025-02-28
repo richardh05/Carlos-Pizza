@@ -7,60 +7,62 @@
 
 <h2>Editing @Html.DisplayFor(model => model.MenuItem.Name)</h2>
 
-<hr />
-    <form method="post" enctype="multipart/form-data">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="MenuItem.Id" />
-        <div class="edit-flex-container">
-            <div class = "edit-flex-item-narrow">
-                <label asp-for="MenuItem.Name" class="control-label"></label>
-                <input asp-for="MenuItem.Name" class="form-control"/>
-                <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
-            </div>
-            <div class="edit-flex-item-narrow">
-                <label asp-for="MenuItem.Category" class="control-label"></label>
-                <input asp-for="MenuItem.Category" class="form-control"/>
-                <span asp-validation-for="MenuItem.Category" class="text-danger"></span>
-            </div>
+<hr/>
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="MenuItem.Id"/>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-narrow">
+            <label asp-for="MenuItem.Name" class="control-label"></label>
+            <input asp-for="MenuItem.Name" class="form-control"/>
+            <span asp-validation-for="MenuItem.Name" class="text-danger"></span>
         </div>
-        <div class="edit-flex-container">
-            <div class="edit-flex-item-wide">
+        <div class="edit-flex-item-narrow">
+            <label asp-for="MenuItem.Category" class="control-label"></label>
+            <input asp-for="MenuItem.Category" class="form-control"/>
+            <span asp-validation-for="MenuItem.Category" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-wide">
             <label asp-for="MenuItem.Desc" class="control-label">Description</label>
             <textarea asp-for="MenuItem.Desc" rows="4" class="form-control"></textarea>
             <span asp-validation-for="MenuItem.Desc" class="text-danger"></span>
             @* <textarea id="message" name="message" rows="4" required minlength="10"></textarea> *@
+        </div>
+    </div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-narrow">
+            <div>
+                <label asp-for="MenuItem.Available" class="control-label">Is this item currently available?</label>
+                <input asp-for="MenuItem.Available" type="checkbox"/>
+                <span asp-validation-for="MenuItem.Available" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="MenuItem.Vegetarian" class="control-label">Is this item vegetarian?</label>
+                <input asp-for="MenuItem.Vegetarian" type="checkbox"/>
+                <span asp-validation-for="MenuItem.Vegetarian" class="text-danger"></span>
             </div>
         </div>
-        <div class="edit-flex-container">
-            <div class="edit-flex-item-narrow">
-                <div>
-                    <label asp-for="MenuItem.Available" class="control-label">Is this item currently available?</label>
-                    <input asp-for="MenuItem.Available" type="checkbox"/>
-                    <span asp-validation-for="MenuItem.Available" class="text-danger"></span>
-                </div>
-                <div>
-                    <label asp-for="MenuItem.Vegetarian" class="control-label">Is this item vegetarian?</label>
-                    <input asp-for="MenuItem.Vegetarian" type="checkbox"/>
-                    <span asp-validation-for="MenuItem.Vegetarian" class="text-danger"></span>
-                </div>
-            </div>
-            <div class="edit-flex-item-narrow">
-                <label asp-for="MenuItem.Price" class="control-label"></label>
-                <input asp-for="MenuItem.Price" class="form-control" />
-                <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
-            </div>
+        <div class="edit-flex-item-narrow">
+            <label asp-for="MenuItem.Price" class="control-label"></label>
+            <input asp-for="MenuItem.Price" class="form-control"/>
+            <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
         </div>
-        <div class="edit-flex-container">
-            <div class="edit-flex-item-wide">
-                <div><label asp-for="MenuItem.Image" class="control-label"></label></div>
-                <input asp-for="MenuItem.Image" type="file" id="file1" name="file1" accept="image/*"/>
-                <span asp-validation-for="MenuItem.Image" class="text-danger"></span>
-            </div>
+    </div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-wide">
+            <div><label asp-for="MenuItem.Image" class="control-label"></label></div>
+            <input asp-for="MenuItem.Image" type="file" id="file1" name="file1" accept="image/*"/>
+            <span asp-validation-for="MenuItem.Image" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn-danger">Save</button>
-        </form>
-        <a href="javascript:history.go(-1)"><button class="btn-primary">Discard</button></a>
+    </div>
+    <button type="submit" class="btn-danger">Save</button>
+</form>
+<a href="javascript:history.go(-1)">
+    <button class="btn-primary">Discard</button>
+</a>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
