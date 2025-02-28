@@ -13,8 +13,8 @@ public class MenuItem
     public string Category { get; set; }
     [StringLength(255)]
     public string Desc { get; set; }
-    public Nullable<bool> Available { get; set; }
-    public bool? Vegetarian { get; set; }
+    public bool Available { get; set; }
+    public bool Vegetarian { get; set; }
     [DataType(DataType.Currency)]
     [Column(TypeName = "Money")]
     public double Price { get; set; }

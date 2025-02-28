@@ -14,7 +14,7 @@
     @foreach (var m in Model.MenuItems.Where(item => item.Available == false))
     {
         <div>
-            <a asp-page="./Details" asp-route-id="@m.Id">
+            <a asp-page="./Menu/Details" asp-route-id="@m.Id">
                 @if (m.Image != null && m.Image.Length > 0)
                 {
                     string base64String = Convert.ToBase64String(m.Image);
