@@ -6,6 +6,7 @@ using Carlos_Pizza.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Carlos_Pizza.Models;
 using Microsoft.AspNetCore.Authorization;
 
@@ -37,6 +38,23 @@ namespace Carlos_Pizza.Pages.Menu
                 return Page();
             }
 
+            // check if a file was uploaded
+            if (Request.Form.Files.Count > 0)
+            {
+                var uploadedFile = Request.Form.Files[0]; // only one file
+        
+                // Check that the file is not null or empty
+                if (uploadedFile != null && uploadedFile.Length > 0)
+                {
+                    // Convert the uploaded image file to a byte array
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await uploadedFile.CopyToAsync(memoryStream);
+                        MenuItem.Image = memoryStream.ToArray(); // Store byte array in ImageData
+                    }
+                }
+            }
+            
             _context.MenuItems.Add(MenuItem);
             await _context.SaveChangesAsync();
 

@@ -49,6 +49,13 @@
             <span asp-validation-for="MenuItem.Price" class="text-danger"></span>
         </div>
     </div>
+    <div class="edit-flex-container">
+        <div class="edit-flex-item-wide">
+            <div><label asp-for="MenuItem.Image" class="control-label"></label></div>
+            <input asp-for="MenuItem.Image" type="file" id="file1" name="file1" accept="image/*"/>
+            <span asp-validation-for="MenuItem.Image" class="text-danger"></span>
+        </div>
+    </div>
     <button type="submit" class="btn-danger">Save</button>
 </form>
 <a href="javascript:history.go(-1)">

@@ -18,7 +18,9 @@
 </div>
 <hr/>
 <div class="flex-container">
-    @foreach (var m in Model.MenuItem.Where(item => item.Available == true))
+    @foreach (var m in Model.MenuItem
+                  .Where(item => item.Available == true))
+                  // .OrderBy(item => item.Category))
     {
         <div>
             <a asp-page="./Details" asp-route-id="@m.Id">
