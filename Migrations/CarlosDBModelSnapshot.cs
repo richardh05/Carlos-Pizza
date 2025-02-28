@@ -22,6 +22,53 @@ namespace Carlos_Pizza.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Carlos_Pizza.Data.Basket", b =>
+                {
+                    b.Property<int>("BasketId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BasketId"));
+
+                    b.HasKey("BasketId");
+
+                    b.ToTable("Baskets");
+                });
+
+            modelBuilder.Entity("Carlos_Pizza.Data.BasketItem", b =>
+                {
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("StockId", "BasketId");
+
+                    b.ToTable("BasketItems");
+                });
+
+            modelBuilder.Entity("Carlos_Pizza.Data.CheckoutCustomer", b =>
+                {
+                    b.Property<string>("Email")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("CheckoutCustomers");
+                });
+
             modelBuilder.Entity("Carlos_Pizza.Models.MenuItem", b =>
                 {
                     b.Property<int>("Id")
@@ -30,7 +77,7 @@ namespace Carlos_Pizza.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool?>("Available")
+                    b.Property<bool>("Available")
                         .HasColumnType("bit");
 
                     b.Property<string>("Category")
@@ -41,9 +88,8 @@ namespace Carlos_Pizza.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Image")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(40)
@@ -52,7 +98,7 @@ namespace Carlos_Pizza.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("Money");
 
-                    b.Property<bool?>("Vegetarian")
+                    b.Property<bool>("Vegetarian")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

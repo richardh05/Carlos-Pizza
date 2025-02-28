@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Carlos_Pizza.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Carlos_Pizza.Areas.Identity.Pages.Account
 {
@@ -30,12 +32,18 @@ namespace Carlos_Pizza.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        // variables for basket system
+        private CarlosDB _db;
+        public CheckoutCustomer Customer = new CheckoutCustomer();
+        public Basket Basket = new Basket();
+        
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            CarlosDB db)
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +51,7 @@ namespace Carlos_Pizza.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _db = db;
         }
 
         /// <summary>
@@ -141,6 +150,9 @@ namespace Carlos_Pizza.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        // call the methods to create the basket and customer records
+                        NewBasket();
+                        NewCustomer(Input.Email);
                         return LocalRedirect(returnUrl);
                     }
                 }
@@ -154,6 +166,35 @@ namespace Carlos_Pizza.Areas.Identity.Pages.Account
             return Page();
         }
 
+        public void NewBasket()
+        {
+            // var currentBasket = _db.Baskets.FromSqlRaw("SELECT * From Baskets")
+            //     .OrderByDescending(b => b.BasketId)
+            //     .FirstOrDefault();
+            // if (currentBasket == null)
+            // {
+            //     Basket.BasketId = 1;
+            // } else {
+            //     Basket.BasketId = currentBasket.BasketId + 1;
+            // }
+            
+            // this version differs from the tutorials, but doesn't cause an IDENTITY_INSERT error
+            var currentBasket = _db.Baskets
+                .OrderByDescending(b => b.BasketId)
+                .FirstOrDefault();
+            
+            _db.Baskets.Add(Basket);
+            _db.SaveChanges();
+        }
+
+        public void NewCustomer(String Email)
+        {
+            Customer.Email = Input.Email;
+            Customer.BasketId = Basket.BasketId;
+            _db.CheckoutCustomers.Add(Customer);
+            _db.SaveChanges();
+        }
+        
         private IdentityUser CreateUser()
         {
             try
