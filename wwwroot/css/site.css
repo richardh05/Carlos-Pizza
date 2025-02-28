@@ -167,6 +167,31 @@ main {
   justify-content: center;
 }
 
+.edit-flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-flex-item-narrow {
+  margin: 10px;
+  max-width: 300px;
+  width: 100%;
+}
+
+.edit-flex-item-wide {
+  margin: 10px;
+  max-width: 620px;
+  width: 100%;
+}
+
+input[type="file"] {
+  width: 100%;
+  max-width: 225px; 
+}
+
 .flex-container > div { /* item within flex-container */
   font-weight: lighter;
   text-align: center;
