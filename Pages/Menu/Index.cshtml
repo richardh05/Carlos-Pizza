@@ -32,6 +32,11 @@
                 }
                 <h3>@Html.DisplayFor(modelItem => m.Name)</h3>
                 <p>@Html.DisplayFor(modelItem => m.Price)</p>
+                <form method="post">
+                    <button type="submit" asp-page-handler="Buy" asp-route-itemId="@m.Id">
+                        Add to Basket
+                    </button>
+                </form>
             </a>
         </div>
     }
