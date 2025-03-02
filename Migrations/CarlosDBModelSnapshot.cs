@@ -69,6 +69,30 @@ namespace Carlos_Pizza.Migrations
                     b.ToTable("CheckoutCustomers");
                 });
 
+            modelBuilder.Entity("Carlos_Pizza.Models.CheckoutItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CheckoutItems");
+                });
+
             modelBuilder.Entity("Carlos_Pizza.Models.MenuItem", b =>
                 {
                     b.Property<int>("Id")
@@ -104,6 +128,39 @@ namespace Carlos_Pizza.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MenuItem", (string)null);
+                });
+
+            modelBuilder.Entity("Carlos_Pizza.Models.OrderHistory", b =>
+                {
+                    b.Property<int>("OrderNo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderNo"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderNo");
+
+                    b.ToTable("OrderHistories");
+                });
+
+            modelBuilder.Entity("Carlos_Pizza.Models.OrderItems", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("OrderId", "StockId");
+
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
