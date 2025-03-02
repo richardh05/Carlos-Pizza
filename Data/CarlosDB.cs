@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Carlos_Pizza.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -42,7 +43,11 @@ public class CarlosDB : IdentityDbContext
     public DbSet<CheckoutCustomer> CheckoutCustomers { get; set; } = default!;
     public DbSet<Basket> Baskets { get; set; } = default!;
     public DbSet<BasketItem> BasketItems { get; set; } = default!;
-
+    public DbSet<OrderHistory> OrderHistories { get; set; } = default!;
+    public DbSet<OrderItems> OrderItems { get; set; } = default!;
+    
+    [NotMapped]
+    public DbSet<CheckoutItem> CheckoutItems { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

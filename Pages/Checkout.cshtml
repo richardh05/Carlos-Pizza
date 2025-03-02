@@ -1,15 +1,50 @@
 @page
-@model Carlos_Pizza.Pages.Checkout
+@model Carlos_Pizza.Pages.CheckoutModel
+@using Carlos_Pizza.Data
+@using Microsoft.Extensions.Options
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-    
-</div>
-</body>
-</html>
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+
+<h2>Checkout</h2>
+
+@if (Model.Items.Count == 0)
+{
+    <p>You do not have any items in your basket. Please revisit the menu and make a selection</p>
+}
+else
+{
+    <form method="post">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Items)
+            {
+                var subtotal = item.Price * item.Quantity;
+
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.Quantity</td>
+                    <td>@subtotal.ToString("C")</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        <h2>Order Total: @Model.Total.ToString("C")</h2>
+
+        <button type="submit" asp-page-handler="Buy">Buy</button>
+    </form>
+}
