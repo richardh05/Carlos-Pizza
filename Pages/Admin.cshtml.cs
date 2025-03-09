@@ -6,7 +6,7 @@ using Carlos_Pizza.Models;
 
 namespace Carlos_Pizza.Pages;
 
-[Authorize (Roles = "Admin")]
+[Authorize (Roles = "Admin")] // Identity Authorization (Gascon, 2022)
 public class Admin : PageModel
 {
     private readonly ILogger<Admin> _logger;

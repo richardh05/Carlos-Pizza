@@ -10,6 +10,8 @@
 <hr/>
 <form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @* The outermost edit-flex-containter is a "row" in the form *@
+    @* Their child items take up half the horizontal space if "narrow", or the whole space if "wide" *@
     <div class="edit-flex-container">
         <div class="edit-flex-item-narrow">
             <label asp-for="MenuItem.Name" class="control-label"></label>

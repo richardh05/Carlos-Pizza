@@ -4,7 +4,8 @@
 @{
     ViewData["Title"] = @Html.DisplayFor(modelItem => modelItem.MenuItem.Name);
 }
-<h2>Add to cart?</h2>
+@* Display the same flexbox from the indexes *@
+<h2>Details</h2>
 <div class="flex-container">
     <div>
         @if (Model.MenuItem.Image != null && Model.MenuItem.Image.Length > 0)
@@ -20,6 +21,7 @@
 
 <hr/>
 
+@* Description underneath. Using switch statements to show full sentence explanations for boolean and one-word values. *@
 <div>
     <ul>
         <li>@Html.DisplayFor(modelItem => modelItem.MenuItem.Desc)</li>

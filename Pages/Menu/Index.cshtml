@@ -10,6 +10,7 @@
     <p>Please select an item, then add it to your cart.</p>
 </div>
 
+@* Search bar *@
 <div class="flex-container">
     <form method="post" class="flex-container justify-content-center">
         <input asp-for="SearchString" class="searchbar" />
@@ -17,6 +18,8 @@
     </form>
 </div>
 <hr/>
+
+@* Same as Pages/index.cshtml, with a buy button *@
 <div class="flex-container">
     @foreach (var m in Model.MenuItem
                   .Where(item => item.Available == true))
@@ -32,11 +35,13 @@
                 }
                 <h3>@Html.DisplayFor(modelItem => m.Name)</h3>
                 <p>@Html.DisplayFor(modelItem => m.Price)</p>
-                <form method="post">
-                    <button type="submit" asp-page-handler="Buy" asp-route-itemId="@m.Id">
-                        Add to Basket
-                    </button>
-                </form>
+                @if (User.Identity is { IsAuthenticated: true }) {
+                    <form method="post">
+                        <button class="basket-button" type="submit" asp-page-handler="Buy" asp-route-itemId="@m.Id">
+                            Add to Basket
+                        </button>
+                    </form>
+                }
             </a>
         </div>
     }

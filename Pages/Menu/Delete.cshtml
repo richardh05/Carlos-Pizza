@@ -2,12 +2,13 @@
 @model Carlos_Pizza.Pages.Menu.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete @Html.DisplayFor(model => model.MenuItem.Name)";
+    ViewData["Title"] = "Delete";
     // Layout = "Details";
 }
 
 <h2>Delete @Html.DisplayFor(model => model.MenuItem.Name)?</h2>
 
+@* Display the same as details page, just with a warning header *@
 <h4 class="alert-danger">This action cannot be undone.</h4>
 <div class="flex-container">
     <div>

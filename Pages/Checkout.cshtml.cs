@@ -1,11 +1,14 @@
 using Carlos_Pizza.Data;
 using Carlos_Pizza.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 namespace Carlos_Pizza.Pages;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
+[Authorize] // Identity Authorization(Gascon, 2022)
 // Create variables to hold the logged the database (_db), the UserManager tool (_UserManager) and to hold all the items (Items).
 public class CheckoutModel(CarlosDB db, UserManager<IdentityUser> userManager) : PageModel
 {

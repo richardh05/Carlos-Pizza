@@ -1,4 +1,5 @@
 -- DbInitializer stopped working for me, so I'm using this for now
+-- Populates MenuItem with a bunch of example values
 DROP TABLE IF EXISTS MenuItem;
 
 CREATE TABLE MenuItem (

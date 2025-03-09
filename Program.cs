@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 var builder = WebApplication.CreateBuilder(args);
 
+// Created with help from the Microsoft Learn documentation (Dykstra et al., 2024)
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<CarlosDB>(options =>
@@ -66,3 +67,4 @@ using (var scope = app.Services.CreateScope())
 
 // VVV Always keep at the bottom, makes the app run
 app.Run();
+// end of adapted code

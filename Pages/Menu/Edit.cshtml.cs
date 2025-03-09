@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Carlos_Pizza.Pages.Menu
 {
-    [Authorize (Roles = "Admin")]
+    [Authorize(Roles = "Admin")] // Identity Authorization (Gascon, 2022)
     public class EditModel : PageModel
     {
         private readonly CarlosDB _context;
@@ -22,8 +22,7 @@ namespace Carlos_Pizza.Pages.Menu
             _context = context;
         }
 
-        [BindProperty]
-        public MenuItem MenuItem { get; set; } = default!;
+        [BindProperty] public MenuItem MenuItem { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,11 +31,12 @@ namespace Carlos_Pizza.Pages.Menu
                 return NotFound();
             }
 
-            var menuitem =  await _context.MenuItems.FirstOrDefaultAsync(m => m.Id == id);
+            var menuitem = await _context.MenuItems.FirstOrDefaultAsync(m => m.Id == id);
             if (menuitem == null)
             {
                 return NotFound();
             }
+
             MenuItem = menuitem;
             return Page();
         }
@@ -50,11 +50,12 @@ namespace Carlos_Pizza.Pages.Menu
                 return Page();
             }
 
+            // Saving the image in a binary format (Saini, 2017)
             // check if a file was uploaded
             if (Request.Form.Files.Count > 0)
             {
                 var uploadedFile = Request.Form.Files[0]; // only one file
-        
+
                 // Check that the file is not null or empty
                 if (uploadedFile != null && uploadedFile.Length > 0)
                 {
@@ -68,7 +69,7 @@ namespace Carlos_Pizza.Pages.Menu
             }
 
             _context.Attach(MenuItem).State = EntityState.Modified;
-            
+
             try
             {
                 await _context.SaveChangesAsync();
@@ -93,4 +94,5 @@ namespace Carlos_Pizza.Pages.Menu
             return _context.MenuItems.Any(e => e.Id == id);
         }
     }
+// end of adapted code
 }

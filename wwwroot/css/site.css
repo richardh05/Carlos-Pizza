@@ -31,6 +31,10 @@ html {
   font-style: normal;
 }
 
+/*All code beyond this point makes use of two online colour palettes I've used: 
+* Shades of White (Dixon, n.d.)
+* and the Red, Blue, Grey and Black colours (Delac, n.d.)
+*/
 a:hover {
   color: #f95959
 }
@@ -124,7 +128,7 @@ body {
   margin-bottom: auto;
   min-height: 100vh;
   background-color: #e3e3e3;
-  background-image: url('background.jpg');
+  background-image: url('background.jpg'); /*(‘pikisuperstar’, 2024)*/
   padding-bottom: 60px;
 }
 
@@ -296,4 +300,13 @@ form input {
 
 li {
   text-align: left;
+}
+
+/*.flex-container div .basket-button {*/
+/*  align-self: flex-end;*/
+/*}*/
+
+.basket-button, .basket-button:hover {
+  background-color: #455a64;
+  color: white;
 }

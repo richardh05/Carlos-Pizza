@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Carlos_Pizza.Pages.Menu
 {
-    [Authorize (Roles = "Admin")]
+    [Authorize (Roles = "Admin")] // Identity Authorization (Gascon, 2022)
     public class DeleteModel : PageModel
     {
         private readonly CarlosDB _context;

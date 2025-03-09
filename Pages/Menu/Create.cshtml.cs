@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Carlos_Pizza.Pages.Menu
 {
-    [Authorize (Roles = "Admin")]
+    [Authorize (Roles = "Admin")] // Identity Authorization (Gascon, 2022)
     public class CreateModel : PageModel
     {
         private readonly CarlosDB _context;
@@ -38,6 +38,7 @@ namespace Carlos_Pizza.Pages.Menu
                 return Page();
             }
 
+            // Saving the image in a binary format (Saini, 2017)
             // check if a file was uploaded
             if (Request.Form.Files.Count > 0)
             {
@@ -61,4 +62,5 @@ namespace Carlos_Pizza.Pages.Menu
             return RedirectToPage("./Index");
         }
     }
+    // end of adapted code
 }

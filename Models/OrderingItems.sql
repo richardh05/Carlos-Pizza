@@ -1,3 +1,4 @@
+ -- Copied from Ian Vincent
 create table OrderHistories(
                                OrderNo int NOT NULL Primary Key,
                                Email nvarchar(50) NOT NULL,

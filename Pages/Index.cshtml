@@ -27,6 +27,7 @@
 @*                 <td>@m.Name</td> *@
 @*                 <td>@m.Desc</td> *@
 @*                 <td>@m.Price</td> *@
+
 @*             </tr> *@
 @*         } *@
 @*         </tbody> *@
@@ -36,11 +37,13 @@
 @* <h2>Please take a look</h2> *@
 <hr />
 
+@* Flex-container to display items in a grid as clickable "tiles" *@
 <div class="flex-container">
     @foreach (var m in Model.MenuItems.Where(item => item.Available == true))
     {
         <div>
             <a asp-page="Menu/Details" asp-route-id="@m.Id">
+                
                 @if (m.Image != null && m.Image.Length > 0)
                 {
                     string base64String = Convert.ToBase64String(m.Image);
@@ -49,6 +52,14 @@
                 }
                 <h3>@Html.DisplayFor(modelItem => m.Name)</h3>
                 <p>@Html.DisplayFor(modelItem => m.Price)</p>
+                @if (User.Identity is { IsAuthenticated: true })
+                {
+                    <form method="post">
+                        <button class="basket-button" type="submit" asp-page-handler="Buy" asp-route-itemId="@m.Id">
+                            Add to Basket
+                        </button>
+                    </form>
+                }
             </a>
         </div>
     }
