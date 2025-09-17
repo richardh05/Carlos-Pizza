@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Carlos_Pizza.Data;
 
-public class IdentitySeedData
+public static class IdentitySeedData
 {
     public static async Task Initialize(CarlosDB context,
         UserManager<IdentityUser> userManager,
@@ -16,7 +16,12 @@ public class IdentitySeedData
         // we will add admin and member roles, using
         string adminRole = "Admin";
         string memberRole = "Member";
-        string password4all = "P@55word";
+        string adminEmail = Environment.GetEnvironmentVariable("ADMIN_EMAIL") 
+                            ?? throw new InvalidOperationException("ADMIN_EMAIL must be set in environment.");
+        string adminPassword = Environment.GetEnvironmentVariable("ADMIN_PASSWORD") 
+                               ?? throw new InvalidOperationException("ADMIN_PASSWORD must be set in environment.");
+        bool createDemoUser = bool.TryParse(Environment.GetEnvironmentVariable("CREATE_DEMO_USER"), out var result) && result;
+        
 
 
         // look for an existing admin role, if not found then create it
@@ -30,37 +35,38 @@ public class IdentitySeedData
         {
             await roleManager.CreateAsync(new IdentityRole(memberRole));
         }
+        
+        
         // Look for an admin user, if not exist then create with these details
-        if (await userManager.FindByNameAsync("admin@ucm.ac.im") == null)
+        if (await userManager.FindByNameAsync(adminEmail) == null)
         {
             var user = new IdentityUser
             {
-                UserName = "admin@ucm.ac.im",
-                Email = "admin@ucm.ac.im",
-                PhoneNumber = "06124 648200"
+                UserName = adminEmail,
+                Email = adminEmail,
             };
             //if user created then add them to the admin role
-            var result = await userManager.CreateAsync(user);
-            if (result.Succeeded)
+            var adminCreationResult = await userManager.CreateAsync(user);
+            if (adminCreationResult.Succeeded)
             {
-                await userManager.AddPasswordAsync(user, password4all);
+                await userManager.AddPasswordAsync(user, adminPassword);
                 await userManager.AddToRoleAsync(user, adminRole);
             }
         }
-        // Look for an member user, if not exist then create with these details
-        if (await userManager.FindByNameAsync("member@ucm.ac.im") == null)
+        // Look for a member user, if not exist then create with these details
+        if (createDemoUser && await userManager.FindByNameAsync("me@example.com") == null)
         {
             var user = new IdentityUser
             {
-                UserName = "member@ucm.ac.im",
-                Email = "member@ucm.ac.im",
+                UserName = "me@example.com",
+                Email = "me@example.com",
                 PhoneNumber = "06124 648200"
             };
             //if user created then add them to the admin role
-            var result = await userManager.CreateAsync(user);
-            if (result.Succeeded)
+            var demoCreationResult = await userManager.CreateAsync(user);
+            if (demoCreationResult.Succeeded)
             {
-                await userManager.AddPasswordAsync(user, password4all);
+                await userManager.AddPasswordAsync(user, "password123");
                 await userManager.AddToRoleAsync(user, memberRole);
             }
         }
