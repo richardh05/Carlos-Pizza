@@ -26,7 +26,7 @@ namespace Carlos_Pizza.Pages
         private readonly CarlosDB _db;
         public void OnGet()
         {
-            MenuItems = _db.MenuItems.FromSqlRaw("SELECT * FROM MenuItem WHERE Category = 'Main'").ToList();
+            MenuItems = _db.MenuItems.FromSqlRaw("SELECT * FROM MenuItems WHERE Category = 'Main'").ToList();
         }
         public async Task<IActionResult> OnPostBuyAsync(int itemId)
         {

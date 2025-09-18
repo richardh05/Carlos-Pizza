@@ -52,7 +52,9 @@ public class CarlosDB : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<MenuItem>().ToTable("MenuItem");
         modelBuilder.Entity<BasketItem>().HasKey(t => new { t.StockId , t.BasketId });
+        modelBuilder.Entity<CheckoutItem>()
+            .Property(c => c.Price)
+            .HasPrecision(18, 2);
 }
 }

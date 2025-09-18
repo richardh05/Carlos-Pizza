@@ -4,23 +4,23 @@ namespace Carlos_Pizza.Data;
 
 public static class IdentitySeedData
 {
-    public static async Task Initialize(CarlosDB context,
+    public static async Task Initialize(
+        CarlosDB context,
         UserManager<IdentityUser> userManager,
-        RoleManager<IdentityRole> roleManager
+        RoleManager<IdentityRole> roleManager, 
+        IConfiguration configuration
     )
     {
-        // this is an EF core method to check if the database has been created
-        // if it does no action is taken, if not the database and all its schema are created
-        context.Database.EnsureCreated();
 
         // we will add admin and member roles, using
         string adminRole = "Admin";
         string memberRole = "Member";
-        string adminEmail = Environment.GetEnvironmentVariable("ADMIN_EMAIL") 
-                            ?? throw new InvalidOperationException("ADMIN_EMAIL must be set in environment.");
-        string adminPassword = Environment.GetEnvironmentVariable("ADMIN_PASSWORD") 
-                               ?? throw new InvalidOperationException("ADMIN_PASSWORD must be set in environment.");
-        bool createDemoUser = bool.TryParse(Environment.GetEnvironmentVariable("CREATE_DEMO_USER"), out var result) && result;
+        string adminEmail = configuration["Admin:Email"]
+                            ?? throw new InvalidOperationException("Admin:Email must be set.");
+        string adminPassword = configuration["Admin:Password"]
+                               ?? throw new InvalidOperationException("Admin:Password must be set.");
+        bool createDemoUser = bool.TryParse(configuration["Enable:DemoUser"], out var result) && result;
+
         
 
 

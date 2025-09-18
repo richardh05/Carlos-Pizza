@@ -41,29 +41,26 @@ else
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+
     var context = services.GetRequiredService<CarlosDB>();
-    context.Database.EnsureCreated();
+    context.Database.Migrate();
+
+    // seed app-specific data
     DbInitializer.Initialize(context);
+
+    // seed identity users & roles
+    var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
+    var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
+    var config = services.GetRequiredService<IConfiguration>();
+
+    IdentitySeedData.Initialize(context, userMgr, roleMgr, config).Wait();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
 app.MapRazorPages();
-
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<CarlosDB>();
-    context.Database.Migrate();
-    var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
-    var roleMgr = services.GetRequiredService<RoleManager<IdentityRole>>();
-    IdentitySeedData.Initialize(context, userMgr, roleMgr).Wait();
-}
 
 // VVV Always keep at the bottom, makes the app run
 app.Run();
