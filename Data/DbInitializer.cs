@@ -6,8 +6,6 @@ namespace Carlos_Pizza.Data
     public class DbInitializer
     {
         public static void Initialize(CarlosDB context) {
-            context.Database.Migrate();
-            context.SaveChanges();
             
             // Look for any food items.
             if (context.MenuItems.Any())

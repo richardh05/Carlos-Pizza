@@ -43,9 +43,17 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<CarlosDB>();
+    // Use a new DbContext instance for migration
+    using (var migrationContext = services.GetRequiredService<CarlosDB>())
+    {
+        await migrationContext.Database.MigrateAsync();
+    }
+
+    // Now, get a NEW DbContext instance for seeding
+    var seedingContext = services.GetRequiredService<CarlosDB>();
     
-    // seed app-specific data
-    DbInitializer.Initialize(context);
+    // Seed the database
+    DbInitializer.Initialize(seedingContext);
 
     // seed identity users & roles
     var userMgr = services.GetRequiredService<UserManager<IdentityUser>>();
