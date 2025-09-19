@@ -40,24 +40,29 @@ services:
       - mssql_data:/var/opt/mssql
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/richardh05/carlos-pizza:latest
     container_name: carlos-pizza
     depends_on:
       - db
     environment:
-      CONNECTIONSTRINGS__CARLOSDB: "Data Source=...;Initial Catalog=...;User ID=...;Password=...;TrustServerCertificate=True"
+      CONNECTIONSTRINGS__CARLOSDB: "Server=db;Database=CarlosDB;User ID=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True"
       ADMIN__EMAIL: "admin@carlospizza.local"
       ADMIN__PASSWORD: "SuperSecret123"
       ENABLE__DEMOUSER: true
       ASPNETCORE_URLS: "http://+:8080"
     ports:
       - "8080:8080"
-      - "8081:8081"
 
 volumes:
   mssql_data:
+```
+
+### Tip: getting your connection string
+```bash
+# enter the docker container
+docker exec -it carlos-db bash
+# run sqlcmd to set sa's password to "YourStrong!Passw0rd"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong!Passw0rd"
 ```
 
 ## Requirements

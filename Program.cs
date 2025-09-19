@@ -43,8 +43,32 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<CarlosDB>();
-    context.Database.Migrate();
-
+    
+    int maxRetries = 10;
+    int retryDelay = 5000; // 5 seconds
+    
+    for (int i = 0; i < maxRetries; i++)
+    {
+        try
+        {
+            Console.WriteLine("Attempting database migration...");
+            context.Database.Migrate();
+            Console.WriteLine("Database migration successful!");
+            // If migration is successful, break the loop
+            break;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Migration failed on attempt {i + 1} of {maxRetries}. Retrying in {retryDelay / 1000} seconds. Error: {ex.Message}");
+            Thread.Sleep(retryDelay);
+            if (i == maxRetries - 1)
+            {
+                Console.WriteLine("Maximum migration retries exhausted. The application will now terminate.");
+                throw; // Throw the exception if all retries fail
+            }
+        }
+    }
+    
     // seed app-specific data
     DbInitializer.Initialize(context);
 
