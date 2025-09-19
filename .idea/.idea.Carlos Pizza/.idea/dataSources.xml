@@ -9,5 +9,12 @@
       <jdbc-url>Data Source=mssql.chester.network;Initial Catalog=db_2326227_carlosdb;User ID=user_db_2326227_carlosdb;Password=ID398jQIPoBokrfW</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@localhost" uuid="d81c6240-5666-4d72-abc2-8231b25717e1">
+      <driver-ref>sqlserver.jb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
+      <jdbc-url>Server=localhost,1433</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
