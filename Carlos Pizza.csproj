@@ -45,6 +45,7 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include=".github\workflows\docker.yml" />
   </ItemGroup>
 
 </Project>
